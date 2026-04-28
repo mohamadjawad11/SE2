@@ -1,0 +1,14 @@
+npm i typescript
+=>This is the core TypeScript compiler.
+  It lets you write code in TypeScript (.ts files) instead of plain JavaScript.
+  Adds static typing, which helps catch errors before runtime.
+  Compiles TypeScript → JavaScript using the tsc command.
+
+
+npm i ts-node
+=>This is a runtime tool that lets you run TypeScript files directly without compiling first.
+
+-D (npm i -D) 
+=>These are development dependencies, meaning:
+  They are only needed while coding and building your app.
+  They are NOT required in production.
