@@ -12,3 +12,7 @@ npm i ts-node
 =>These are development dependencies, meaning:
   They are only needed while coding and building your app.
   They are NOT required in production.
+
+
+npm i-D jest @types/jest ts-jest
+=>java script test

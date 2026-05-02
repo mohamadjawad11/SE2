@@ -1,0 +1,255 @@
+SOLID Princples
+
+S:one class should have only 1 job
+in this step I have created orderManagment class that contains
+the following methods:getOrders,addOrders,getById and inside the
+add order I used the Validaor class.
+I have also created Validator class that contains the following
+methods:validate price and validate if item is available
+I have also created the FinanceCalculator class that is responsible
+to calculate the total revenue and consumption of power.
+
+The previous code was like this:
+
+const possibleItems = [
+  "Sponge",
+  "Chocolate",
+  "Fruit",
+  "Red Velvet",
+  "Birthday",
+  "Carrot",
+  "Marble",
+  "Coffee",
+];
+
+const orders = [
+  { id: 1, item: "Sponge", price: 15 },
+  { id: 2, item: "Chocolate", price: 20 },
+  { id: 3, item: "Fruit", price: 18 },
+  { id: 4, item: "Red Velvet", price: 25 },
+  { id: 5, item: "Coffee", price: 8 },
+];
+
+let orderId = 6; // Start new orders from ID 6
+
+// Adding a new order directly
+const newItem = "Marble";
+const newPrice = 22;
+
+if (!possibleItems.includes(newItem)) {
+  throw new Error(`Invalid item. Must be one of: ${possibleItems.join(", ")}`);
+}
+if (newPrice <= 0) {
+  throw new Error("Price must be greater than zero");
+}
+
+const newOrder = { id: orderId++, item: newItem, price: newPrice };
+orders.push(newOrder);
+
+console.log("Orders after adding a new order:", orders);
+
+// Calculate Total Revenue directly
+const totalRevenue = orders.reduce((total, order) => total + order.price, 0);
+console.log("Total Revenue:", totalRevenue);
+
+// Calculate Average Buy Power directly
+const averageBuyPower = orders.length === 0 ? 0 : totalRevenue / orders.length;
+console.log("Average Buy Power:", averageBuyPower.toFixed(2));
+
+// Fetching an order directly
+const fetchId = 2;
+const fetchedOrder = orders.find(order => order.id === fetchId);
+console.log("Order with ID 2:", fetchedOrder);
+
+// Attempt to fetch a non-existent order
+const nonExistentId = 10;
+const nonExistentOrder = orders.find(order => order.id === nonExistentId);
+console.log("Order with ID 10 (non-existent):", nonExistentOrder);
+
+
+
+=================================================================
+
+O:Open closed Princple
+=>code is opened for extension closed for modification
+for example,suppose the ceo wants from dev to add a new validation that max price
+can not be over 100,in this case in a normal code flow the dev will go and add a new
+method in the Validator class named maxPrice and then in the orderManager in the 
+add order I will add a new validation which is maxPrice.In this case the dev 
+have violated the OCP by modifying the OrderManager class,this is not a good
+flow suppose I have added a 100 validation I should go to all places that 
+validations will be used in and add them? The scalable flow is to 
+seperate the validations eac to a class that all implements the IValidator
+interface withvalidate method,so in the Validator class main validator class the validate method
+just call the new validtion logic if added and the add order in ordermanager class uses the 
+validate method in Validator class that contains all the validate method of validation classes
+
+
+
+========================================================================
+
+Liskov Substitution Princple
+=>Objects of a subclass should be replaceable with objects of the parent class without breaking the program.
+  If B is a subclass of A, then you should be able to use B anywhere you use A without unexpected behavior.
+  for example if I have a class animal and I have subclasses cat and dog and both sub classes extends and overide
+  the dound method from animal class but the violation appears when example the cat class create a new method
+  for itself like meowing,this is violation since animal object should fit the cat object but not all animals
+  meow so animal object will not fit.
+
+  ========================================================================
+
+  Interface Segregation Princple
+  =>the methods and fields in the interface I am making should be related to class so I don't 
+  force classes to implement useless methods just because they are found in the interface instead 
+  of this just seperate the big interface into more than 1 interface and classes can implement
+  more than one interface.
+
+  ========================================================================
+  Dependency Inversion
+  =>high level modules should not depend on low level modules and vice versa
+    they should be dependent on the abstraction level.
+
+    export class OrderManagement {
+    //get orders, store orders, add orders
+    private MyOrders: Order[] = [];
+
+    getOrders(){
+        return this.MyOrders;
+    }
+
+    addOrder(item:string, price:number){
+      //validate item, validate price
+      const newOrder:Order = { id: this.MyOrders.length + 1, item, price };
+      const validator=new Validator();
+      validator.validate(newOrder);
+      this.MyOrders.push(newOrder);
+    }
+
+    fetchOrderById(id:number){
+      return this.MyOrders.find(order => order.id === id);
+    }
+
+    getTotalRevenue(){
+        return FinanceCalculator.calculateTotalRevenue(this.MyOrders);
+    }
+
+    getAverageBuyPower(){
+        return FinanceCalculator.calculateAverageBuyPower(this.MyOrders);
+    }
+}
+
+In this code the OrderManager is tightly coupled to Vlidator and Financial Calculator 
+classes.This violation can be solved through constructor.
+
+This is the updated code:
+//SOLID
+
+export interface Order{
+    id:number;
+    item:string;
+    price:number;
+}
+
+
+export class OrderManagement {
+    //get orders, store orders, add orders
+    private MyOrders: Order[] = [];
+
+    constructor(private validator: IValidator, private financeCalculator: IFinanceCalculator) {
+     
+    }
+
+    getOrders(){
+        return this.MyOrders;
+    }
+
+    addOrder(item:string, price:number){
+      //validate item, validate price
+      const newOrder:Order = { id: this.MyOrders.length + 1, item, price };
+      this.validator.validate(newOrder);
+      this.MyOrders.push(newOrder);
+    }
+
+    fetchOrderById(id:number){
+      return this.MyOrders.find(order => order.id === id);
+    }
+
+    getTotalRevenue(){
+        return this.financeCalculator.calculateTotalRevenue(this.MyOrders);
+    }
+
+    getAverageBuyPower(){
+        return this.financeCalculator.calculateAverageBuyPower(this.MyOrders);
+    }
+}
+
+
+interface IValidator{
+    validate(order:Order):void;
+}
+
+
+
+export class Validator implements IValidator{
+
+    validate(order:Order): void {
+        new ItemValidator().validate(order);
+        new PriceValidator().validate(order);
+        new MaxPriceValidator().validate(order);
+    }
+
+}
+
+
+export class ItemValidator implements IValidator{
+     private MyItems=[
+    "Sponge",
+    "Chocolate",
+    "Red Velvet",
+    "Birthday",
+    "Carrot",
+    "Marble",
+    "Coffee",
+    ];
+    validate(order: Order): void {
+        if (!this.MyItems.includes(order.item)) {
+            throw new Error(`Invalid item. Must be one of: ${this.MyItems.join(", ")}`);
+        }
+    }
+}
+
+
+
+export class PriceValidator implements IValidator{
+    validate(order: Order): void {
+        if (order.price <= 0) {
+            throw new Error("Price must be greater than zero");
+        }
+    }
+}
+
+export class MaxPriceValidator implements IValidator{
+    validate(order: Order): void {
+        if (order.price > 100) {
+            throw new Error("Price must be less than 100");
+        }
+    }
+}
+
+export interface IFinanceCalculator{
+    calculateTotalRevenue(orders:Order[]):number;
+    calculateAverageBuyPower(orders:Order[]):number;
+}
+
+export class FinanceCalculator implements IFinanceCalculator{
+    //calculate total revenue, calculate average buy power
+    public  calculateTotalRevenue(orders:Order[]){
+        return orders.reduce((total, order) => total + order.price, 0);
+    }
+
+    public  calculateAverageBuyPower(orders:Order[]){
+        const totalRevenue = this.calculateTotalRevenue(orders);
+        return orders.length === 0 ? 0 : totalRevenue / orders.length;
+    }
+}
+

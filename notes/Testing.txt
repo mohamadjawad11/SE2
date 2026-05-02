@@ -1,0 +1,35 @@
+🧠 What is Unit Testing?
+
+Unit testing means:
+
+Testing small, isolated pieces of code (units) to make sure they behave correctly.
+
+A “unit” is usually:
+
+A function
+A class method
+A small module
+
+
+🎯 Goal of Unit Testing
+Catch bugs early
+Make code safer to change
+Document expected behavior
+Increase confidence when refactoring
+
+
+
+
+refactoring
+🔥 What should you test?
+
+Test things that contain logic:
+
+✔️ Validation (e.g. PriceValidator)
+✔️ Business rules (e.g. “max price < 100”)
+✔️ Calculations (e.g. revenue)
+✔️ Conditions (if/else behavior)
+✔️ Edge cases (empty arrays, invalid input)
+
+
+

@@ -1,0 +1,13 @@
+git remote -v  =>to check weather the project is connected to a github repo
+
+
+Push Existing code to github repo:
+
+git init
+git remote add origin https://github.com/your-username/your-repo-name.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+
+
+
