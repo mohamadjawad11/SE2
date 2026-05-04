@@ -10,4 +10,29 @@ git commit -m "Initial commit"
 git push -u origin main
 
 
+git rm --cached <Filename>          to unstage a file I don't want to commit and push
+
+git log                             to see previous logs
+
+git commit -a -m "Initial commit"      commit without staging like no need to git add .
+
+git rm --cached <filename>
+
+
+git clone <repolink>                  to doenload the public repo on my machine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

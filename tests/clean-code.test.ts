@@ -1,12 +1,22 @@
 import {FinanceCalculator, OrderManagement, Validator} from "../src/cleanCode";
 
 describe('OrderManagement', () => {
+
+    let orderManagement: OrderManagement;
+    let validator: Validator;
+    let calculator: FinanceCalculator;
+    beforeAll(()=>{
+        validator=new Validator();
+        calculator=new FinanceCalculator();
+    })
+
+    beforeEach(()=>{
+        orderManagement = new OrderManagement(validator, calculator);
+    });
+
     it("should add an order",()=>{
 
         //Arrange
-        const validator=new Validator();
-        const calculator=new FinanceCalculator();
-        const orderManagement = new OrderManagement(validator, calculator);
         const item="Sponge";
         const price=10;
 
@@ -21,9 +31,6 @@ describe('OrderManagement', () => {
     it("should get an order by id",()=>{
 
         //Arrange
-        const validator=new Validator();
-        const calculator=new FinanceCalculator();
-        const orderManagement = new OrderManagement(validator, calculator);
         const item="Sponge";
         const price=10;
         orderManagement.addOrder(item, price);
@@ -33,6 +40,21 @@ describe('OrderManagement', () => {
 
         //Assert
         expect(order).toEqual({id:1, item, price});
+    });
+
+    it("should call finance calculator to get total revenue",()=>{
+        const item="Sponge";
+        const price=10;
+        orderManagement.addOrder(item, price);
+        const spy=jest.spyOn(calculator, "calculateTotalRevenue");
+        
+        //Act
+        const totalRevenue=orderManagement.getTotalRevenue();
+
+        //Assert
+        expect(spy).toHaveBeenCalledWith(orderManagement.getOrders());
+        expect(spy).toHaveBeenNthCalledWith(1, [{id:1, item, price}]);
+        expect(spy).toHaveNthReturnedWith(1, 10);
     });
 });
 
