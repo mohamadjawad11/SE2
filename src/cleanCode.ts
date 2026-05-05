@@ -15,8 +15,6 @@ export class OrderManagement {
      
     }
 
-    
-
     getOrders(){
         return this.MyOrders;
     }

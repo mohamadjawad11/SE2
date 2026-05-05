@@ -1,0 +1,99 @@
+🧠 What is Logging?
+
+Logging = writing messages about what your backend is doing
+
+Example:
+
+user logged in
+order created
+error happened
+
+
+🎯 Why Logging is Important
+
+1. Debug problems
+
+Without logs → you don’t know what happened
+With logs → you see the exact error
+
+
+2. See what your app is doing
+
+Logs show:
+
+user actions
+system behavior
+
+
+3. Catch errors
+
+Example:
+
+database failed
+invalid input
+server crash
+
+
+4. Work in production
+
+In production:
+
+you cannot use debugger
+logs are your only way to see issues
+5. Security
+
+Logs help you see:
+
+failed login attempts
+suspicious activity
+6. Performance
+
+Logs help find:
+
+slow functions
+heavy requests
+
+🔥 Types of Logs
+
+INFO
+
+normal actions
+example: order created
+
+WARN
+
+something is not normal but not broken
+example: wrong input
+
+ERROR
+
+something failed
+example: database error
+
+DEBUG
+
+extra details for developers
+example: variable values
+
+
+
+⚖️ When to use logging
+
+Small project → simple logs (console.log)
+Medium project → use logging library
+Large project → logging is required
+
+
+🧾 Simple Rule
+
+If something breaks → logs tell you WHY
+If something is slow → logs tell you WHERE
+If something is used → logs tell you HOW
+
+
+
+
+
+
+
+

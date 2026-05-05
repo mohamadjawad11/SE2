@@ -1,0 +1,16 @@
+{"level":"info","message":"All Orders","orders":[{"id":1,"item":"Sponge","price":10},{"id":2,"item":"Chocolate","price":20},{"id":3,"item":"Coffee","price":15}],"timestamp":"2026-05-05T12:30:13.775Z"}
+{"level":"info","message":"Total Revenue:45","timestamp":"2026-05-05T12:30:13.775Z"}
+{"level":"info","message":"Average Buy Power:15","timestamp":"2026-05-05T12:30:13.775Z"}
+{"level":"info","message":"Order with ID 1:","order":{"id":1,"item":"Sponge","price":10},"timestamp":"2026-05-05T12:30:13.776Z"}
+{"level":"info","message":"All Orders","orders":[{"id":1,"item":"Sponge","price":10},{"id":2,"item":"Chocolate","price":20},{"id":3,"item":"Coffee","price":15}],"timestamp":"2026-05-05T12:30:17.230Z"}
+{"level":"info","message":"Total Revenue:45","timestamp":"2026-05-05T12:30:17.231Z"}
+{"level":"info","message":"Average Buy Power:15","timestamp":"2026-05-05T12:30:17.231Z"}
+{"level":"info","message":"Order with ID 1:","order":{"id":1,"item":"Sponge","price":10},"timestamp":"2026-05-05T12:30:17.231Z"}
+{"level":"info","message":"All Orders","orders":[{"id":1,"item":"Sponge","price":10},{"id":2,"item":"Chocolate","price":20},{"id":3,"item":"Coffee","price":15}],"timestamp":"2026-05-05T12:30:45.064Z"}
+{"level":"info","message":"Total Revenue:45","timestamp":"2026-05-05T12:30:45.065Z"}
+{"level":"info","message":"Average Buy Power:15","timestamp":"2026-05-05T12:30:45.065Z"}
+{"level":"info","message":"Order with ID 1:","order":{"id":1,"item":"Sponge","price":10},"timestamp":"2026-05-05T12:30:45.065Z"}
+{"level":"info","message":"All Orders","orders":[{"id":1,"item":"Sponge","price":10},{"id":2,"item":"Chocolate","price":20},{"id":3,"item":"Coffee","price":15}],"timestamp":"2026-05-05T12:33:02.069Z"}
+{"level":"info","message":"Total Revenue:45","timestamp":"2026-05-05T12:33:02.070Z"}
+{"level":"info","message":"Average Buy Power:15","timestamp":"2026-05-05T12:33:02.070Z"}
+{"level":"info","message":"Order with ID 1:","order":{"id":1,"item":"Sponge","price":10},"timestamp":"2026-05-05T12:33:02.070Z"}

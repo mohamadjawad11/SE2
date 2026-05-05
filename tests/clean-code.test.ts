@@ -47,16 +47,18 @@ describe('OrderManagement', () => {
         const price=10;
         orderManagement.addOrder(item, price);
         const spy=jest.spyOn(calculator, "calculateTotalRevenue");
-        
+        spy.mockReturnValue(10);
         //Act
         const totalRevenue=orderManagement.getTotalRevenue();
 
         //Assert
+        expect(totalRevenue).toBe(10);
         expect(spy).toHaveBeenCalledWith(orderManagement.getOrders());
         expect(spy).toHaveBeenNthCalledWith(1, [{id:1, item, price}]);
         expect(spy).toHaveNthReturnedWith(1, 10);
-    });
+    }); 
 });
+
 
 describe("FinanceCalculator",()=>{
     it("should calculate total revenue",()=>{
