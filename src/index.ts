@@ -1,34 +1,20 @@
 import logger from "./utility/logger";
-import {
-  OrderManagement,
-  Validator,
-  FinanceCalculator
-} from "./cleanCode";
-
-const validator = new Validator();
-const financeCalculator = new FinanceCalculator();
-
-const orderManagement = new OrderManagement(
-  validator,
-  financeCalculator
-);
-
-// Add orders
-orderManagement.addOrder("Sponge", 10);
-orderManagement.addOrder("Chocolate", 20);
-orderManagement.addOrder("Coffee", 15);
-
-// Get all orders
-logger.info("All Orders", { orders: orderManagement.getOrders() });
-console.log();
+import { readCsvFile } from "./utility/parser";
 
 
-// Total revenue
-logger.info("Total Revenue:"+orderManagement.getTotalRevenue());
+async function main() {
+  try {
+    const data = await readCsvFile('data/cake orders.csv', true);
+    data.forEach(row => {
+      logger.info(row);
+    });
+  } catch (error) {
+    logger.error('Error reading CSV file:', error);
+  }
+}
 
-// Average buy power
-logger.info("Average Buy Power:"+orderManagement.getAverageBuyPower());
-console.log();
+main();
 
-// Fetch order by ID
-logger.info("Order with ID 1:", { order: orderManagement.fetchOrderById(1) });
+
+
+

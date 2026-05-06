@@ -33,3 +33,31 @@ Test things that contain logic:
 
 
 
+
+
+🎯 What mocking does
+
+👉 Replaces real dependencies with fake ones
+
+Used for:
+
+APIs
+Databases
+External services
+Complex classes
+
+
+A spy(proxy wrapper) lets you:
+
+Watch how a function is used without replacing it completely
+
+Use a spy only when you care about interaction between components
+
+example => orderManagement.getTotalRevenue() => OrderManagement → uses FinanceCalculator
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+{"code":"ENOENT","errno":-2,"level":"error","message":"Error reading CSV file: ENOENT: no such file or directory, open 'data.csv'","path":"data.csv","stack":"Error: ENOENT: no such file or directory, open 'data.csv'\n    at open (node:internal/fs/promises:637:25)\n    at Object.readFile (node:internal/fs/promises:1269:14)","syscall":"open","timestamp":"2026-05-06T11:01:56.661Z"}
