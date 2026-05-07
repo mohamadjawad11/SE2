@@ -45,7 +45,6 @@ interface IValidator{
 }
 
 
-
 export class Validator implements IValidator{
 
     validate(order:Order): void {
