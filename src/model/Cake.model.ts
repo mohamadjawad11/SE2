@@ -1,30 +1,66 @@
 import { Item, ItemCategory } from "./Item.model";
 
-
 export class Cake implements Item{
 
+    // Properties
+    private type: string;
+    private flavor: string;
+    private filling: string;
+    private size: string;
+    private layers: string;
+    private frostingType: string;
+    private frostingFlavor: string;
+    private decorationType: string;
+    private decorationColor: string;
+    private customMessage: string;
+    private shape: string;
+    private allergies: string;
+    private specialIngredients: string;
+    private packagingType: string;
+    private price: number;
+    private quantity: number;
 
+    //private constructor
+    private constructor(
+        type: string,
+        flavor: string,
+        filling: string ,
+        size: string,
+        layers: string,
+        frostingType: string,
+        frostingFlavor: string,
+        decorationType: string ,
+        decorationColor: string,
+        customMessage: string,
+        shape: string,
+        allergies: string,
+        specialIngredients: string,
+        packagingType: string,
+        price: number,
+        quantity: number
+    ) {
+        this.type = type;
+        this.flavor = flavor;
+        this.filling = filling;
+        this.size = size;
+        this.layers = layers;
+        this.frostingType = frostingType;
+        this.frostingFlavor = frostingFlavor;
+        this.decorationType = decorationType;
+        this.decorationColor = decorationColor;
+        this.customMessage = customMessage;
+        this.shape = shape;
+        this.allergies = allergies;
+        this.specialIngredients = specialIngredients;
+        this.packagingType = packagingType;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    //interface method
     getCategory(): ItemCategory {
         return ItemCategory.CAKE;
     }
-
-    // Properties with example default values
-    private type: string = "Sponge";
-    private flavor: string = "Vanilla";
-    private filling: string = "Cream";
-    private size: string = "20";
-    private layers: string = "2";
-    private frostingType: string = "Buttercream";
-    private frostingFlavor: string = "Vanilla";
-    private decorationType: string = "Sprinkles";
-    private decorationColor: string = "Multi-color";
-    private customMessage: string = "Happy Birthday";
-    private shape: string = "Round";
-    private allergies: string = "Nut-Free";
-    private specialIngredients: string = "Organic Ingredients";
-    private packagingType: string = "Standard Box";
-    private price: number = 50;
-    private quantity: number = 1;
 
     // Getters
     getType(): string { return this.type; }

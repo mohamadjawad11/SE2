@@ -1,23 +1,75 @@
-import * as fs from "fs";
-import { XMLParser } from "fast-xml-parser";
+import { promises as fs } from 'fs';
+import { parseStringPromise, Builder } from 'xml2js';
 
-export class XmlParser {
-  private parser: XMLParser;
+// This module handles XML files by converting them
+// to and from a 2D string array.
 
-  constructor() {
-    this.parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: "@_"
+export async function readXmlFile(filePath: string): Promise<string[][]> {
+  try {
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+
+    const result = await parseStringPromise(fileContent, {
+      explicitArray: false,
+      trim: true,
     });
-  }
 
-  parse<T>(filePath: string): T {
-    try {
-      const data = fs.readFileSync(filePath, "utf-8");
-      return this.parser.parse(data) as T;
-    } catch (error) {
-        console.error(`Error reading or parsing XML file at ${filePath}:`, error);
-        throw error;
+    const rows = result.rows?.row ?? result.data?.row;
+
+    const data: string[][] = [];
+
+    if (!rows) {
+      return data;
     }
+
+    const rowArray = Array.isArray(rows) ? rows : [rows];
+
+    for (const row of rowArray) {
+      const cells = row.cell;
+
+      if (Array.isArray(cells)) {
+        data.push(cells.map((cell) => String(cell)));
+      } else if (cells !== undefined) {
+        data.push([String(cells)]);
+      } else {
+        data.push(Object.values(row).map((cell) => String(cell)));
+      }
+    }
+
+    return data;
+  } catch (error) {
+    console.error(`Error reading XML file ${filePath}:`, error);
+    throw error;
+  }
+}
+
+export async function writeXmlFile(
+  filePath: string,
+  data: string[][]
+): Promise<void> {
+  try {
+    const xmlObject = {
+      rows: {
+        row: data.map((row) => ({
+          cell: row,
+        })),
+      },
+    };
+
+    const builder = new Builder({
+      xmldec: {
+        version: '1.0',
+        encoding: 'UTF-8',
+      },
+      renderOpts: {
+        pretty: true,
+      },
+    });
+
+    const xmlContent = builder.buildObject(xmlObject);
+
+    await fs.writeFile(filePath, xmlContent, 'utf-8');
+  } catch (error) {
+    console.error(`Error writing XML file ${filePath}:`, error);
+    throw error;
   }
 }
