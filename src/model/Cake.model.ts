@@ -20,8 +20,8 @@ export class Cake implements Item{
     private price: number;
     private quantity: number;
 
-    //private constructor
-    private constructor(
+    
+     constructor(
         type: string,
         flavor: string,
         filling: string ,

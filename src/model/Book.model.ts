@@ -2,17 +2,17 @@ import { Item, ItemCategory } from "./Item.model";
 
 export class Book implements Item {
 
-    private constructor(
-        private readonly title: string,
-        private readonly author: string,
-        private readonly genre: string,
-        private readonly format: string,
-        private readonly language: string,
-        private readonly publisher: string,
-        private readonly specialEdition: string,
-        private readonly packaging: string,
-        private readonly price: number,
-        private readonly quantity: number
+     constructor(
+        private  title: string,
+        private  author: string,
+        private  genre: string,
+        private  format: string,
+        private  language: string,
+        private  publisher: string,
+        private  specialEdition: string,
+        private  packaging: string,
+        private  price: number,
+        private  quantity: number
     ) {
         this.title = title;
         this.author = author;
@@ -25,8 +25,6 @@ export class Book implements Item {
         this.price = price;
         this.quantity = quantity;
     }
-
-
 
     getCategory(): ItemCategory {
         return ItemCategory.BOOK;

@@ -1,4 +1,7 @@
 import {FinanceCalculator, OrderManagement, Validator} from "../src/cleanCode";
+import { CakeBuilder } from "../src/model/builders/cake.builder";
+import { ToyBuilder } from "../src/model/builders/toy.builder";
+import { BookBuilder } from "../src/model/builders/book.builder";
 
 describe('OrderManagement', () => {
 
@@ -89,5 +92,106 @@ describe("FinanceCalculator",()=>{
 
         //Assert
         expect(averageBuyPower).toBe(15);
+    });
+});
+
+describe("Models Builder(builder pattern)",()=>{
+    it("should build a cake",()=>{
+        
+        //Arrange
+        const cakeBuilder=new CakeBuilder();
+        const cake=cakeBuilder.setType("Birthday")
+        .setFlavor("Chocolate")
+        .setFilling("Cream")
+        .setSize("Medium")
+        .setLayers("2")
+        .setFrostingType("Buttercream")
+        .setFrostingFlavor("Vanilla")
+        .setDecorationType("Sprinkles")
+        .setDecorationColor("Rainbow")
+        .setCustomMessage("Happy Birthday!")
+        .setShape("Round")
+        .setAllergies("None")
+        .setSpecialIngredients("None")
+        .setPackagingType("Box")
+        .setPrice(50)
+        .setQuantity(1)
+        .build();
+
+        //Assert
+        expect(cake).toEqual({
+            type:"Birthday",
+            flavor:"Chocolate",
+            filling:"Cream",
+            size:"Medium",
+            layers:"2",
+            frostingType:"Buttercream",
+            frostingFlavor:"Vanilla",
+            decorationType:"Sprinkles",
+            decorationColor:"Rainbow",
+            customMessage:"Happy Birthday!",
+            shape:"Round",
+            allergies:"None",
+            specialIngredients:"None",
+            packagingType:"Box",
+            price:50,
+            quantity:1
+        });
+    });
+
+    it("should build a toy instance",()=>{
+        //Arrange
+        const toyBuilder=new ToyBuilder();
+        const toy=toyBuilder.setType("Action Figure")
+        .setAgeGroup(5)
+        .setBrand("Hasbro")
+        .setMaterial("Plastic")
+        .setBatteryRequired(false)
+        .setEducational(false)
+        .setPrice(20)
+        .setQuantity(2)
+        .build();
+
+        //Assert
+        expect(toy).toEqual({
+            type:"Action Figure",
+            ageGroup:5,
+            brand:"Hasbro",
+            material:"Plastic",
+            batteryRequired:false,
+            educational:false,
+            price:20,
+            quantity:2
+        });
+    });
+
+    it("should build a book instance",()=>{
+        //Arrange
+        const bookBuilder=new BookBuilder();
+        const book=bookBuilder.setTitle("The Great Gatsby")
+        .setAuthor("F. Scott Fitzgerald")
+        .setGenre("Classic")
+        .setFormat("Hardcover")
+        .setLanguage("English")
+        .setPublisher("Scribner")
+        .setSpecialEdition("None")
+        .setPackaging("Box")
+        .setPrice(15)
+        .setQuantity(3)
+        .build();
+
+        //Assert
+        expect(book).toEqual({
+            title:"The Great Gatsby",
+            author:"F. Scott Fitzgerald",
+            genre:"Classic",
+            format:"Hardcover",
+            language:"English",
+            publisher:"Scribner",
+            specialEdition:"None",
+            packaging:"Box",
+            price:15,
+            quantity:3
+        });
     });
 });
