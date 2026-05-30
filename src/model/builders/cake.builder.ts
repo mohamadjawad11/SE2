@@ -19,6 +19,10 @@ export class CakeBuilder {
     private price!: number;
     private quantity!: number;
 
+    public static create():CakeBuilder{
+        return new CakeBuilder();
+    }
+
     setType(type: string): CakeBuilder {
         this.type = type;
         return this;

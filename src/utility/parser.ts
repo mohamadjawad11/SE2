@@ -21,10 +21,10 @@ export async function readCsvFile(filePath: string, includeHeaders: boolean=fals
           }, (err, records: string[][] | undefined) => {
             if (err) {
               reject(err);
-                if(!includeHeaders && records && records.length > 0) {
-                    records.shift(); // Remove the header row
-                }
             } else {
+              if(!includeHeaders && records && records.length > 0) {
+                  records.shift(); // Remove the header row
+              }
               resolve(records || []);
             }
           })
@@ -51,5 +51,4 @@ export async function writeCsvFile(filePath: string, data: string[][]): Promise<
     throw error;
   }
 }
-
 
