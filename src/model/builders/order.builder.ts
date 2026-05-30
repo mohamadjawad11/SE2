@@ -1,6 +1,6 @@
-import { IItem } from "model/IItem";
-import { Order } from "model/Order.model";
-import logger from "utility/logger";
+import { IItem } from "../IItem";
+import { Order } from "../Order.model";
+import logger from "../../utility/logger";
 
 export class OrderBuilder{
     private item!:IItem;

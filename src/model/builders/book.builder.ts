@@ -13,6 +13,10 @@ export class BookBuilder {
         private  packaging!: string;
         private  price!: number;
         private  quantity!: number;
+        
+        public static create():BookBuilder{
+            return new BookBuilder();
+        }
 
     setTitle(title: string): BookBuilder {
         this.title = title;

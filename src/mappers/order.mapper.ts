@@ -1,10 +1,10 @@
-import { IOrder } from "model/IOrder";
+import { IOrder } from "../model/IOrder";
 import { IMapper } from "./IMapper";
-import { OrderBuilder } from "model/builders/order.builder";
-import { IItem } from "model/IItem";
+import { OrderBuilder } from "../model/builders/order.builder";
+import { IItem } from "../model/IItem";
 
 
-export class CSVOrderMapper implements IMapper<string[],IOrder>{
+export class OrderMapper implements IMapper<string[],IOrder>{
     constructor(private itemMapper:IMapper<string[],IItem>){
 
     }
@@ -19,3 +19,6 @@ export class CSVOrderMapper implements IMapper<string[],IOrder>{
     }
     
 }
+
+export class CSVOrderMapper extends OrderMapper {}
+ 

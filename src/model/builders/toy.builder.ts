@@ -11,6 +11,10 @@ export class ToyBuilder{
     private price!: number;
     private quantity!: number;
 
+    public static create():ToyBuilder{
+        return new ToyBuilder();
+    }
+
     setType(type: string): ToyBuilder {
         this.type = type;
         return this;

@@ -1,6 +1,6 @@
-import { Item, ItemCategory } from "./IItem";
+import { IItem, ItemCategory } from "./IItem";
 
-export class Book implements Item {
+export class Book implements IItem {
 
      constructor(
         private  title: string,
