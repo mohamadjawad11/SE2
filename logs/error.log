@@ -1,3 +1,13 @@
 {"code":"ENOENT","errno":-2,"level":"error","message":"Error reading CSV file: ENOENT: no such file or directory, open 'data.csv'","path":"data.csv","stack":"Error: ENOENT: no such file or directory, open 'data.csv'\n    at open (node:internal/fs/promises:637:25)\n    at Object.readFile (node:internal/fs/promises:1269:14)","syscall":"open","timestamp":"2026-05-06T11:01:56.661Z"}
 {"level":"error","message":"Error reading XML file: Cannot read properties of undefined (reading 'row')","stack":"TypeError: Cannot read properties of undefined (reading 'row')\n    at /Users/khatwtelephone/Desktop/SE2/src/utility/XmlParser.ts:24:30\n    at Generator.next (<anonymous>)\n    at fulfilled (/Users/khatwtelephone/Desktop/SE2/src/utility/XmlParser.ts:5:58)","timestamp":"2026-05-21T08:04:29.211Z"}
 {"level":"error","message":"Error reading XML file: Cannot read properties of undefined (reading 'row')","stack":"TypeError: Cannot read properties of undefined (reading 'row')\n    at /Users/khatwtelephone/Desktop/SE2/src/utility/XmlParser.ts:24:30\n    at Generator.next (<anonymous>)\n    at fulfilled (/Users/khatwtelephone/Desktop/SE2/src/utility/XmlParser.ts:5:58)","timestamp":"2026-05-21T08:04:32.790Z"}
+{"level":"error","message":"Order with ID 999 not found.","timestamp":"2026-06-06T07:47:44.878Z"}
+{"level":"error","message":"Invalid order item.","timestamp":"2026-06-06T07:47:44.881Z"}
+{"level":"error","message":"Order with ID 999 not found.","timestamp":"2026-06-06T07:47:44.882Z"}
+{"level":"error","message":"Order with ID 999 not found.","timestamp":"2026-06-06T07:47:44.883Z"}
+{"level":"error","message":"Invalid order ID.","timestamp":"2026-06-06T07:47:44.883Z"}
+{"level":"error","message":"Order with ID 999 not found.","timestamp":"2026-06-06T07:50:07.663Z"}
+{"level":"error","message":"Invalid order item.","timestamp":"2026-06-06T07:50:07.665Z"}
+{"level":"error","message":"Order with ID 999 not found.","timestamp":"2026-06-06T07:50:07.666Z"}
+{"level":"error","message":"Order with ID 999 not found.","timestamp":"2026-06-06T07:50:07.667Z"}
+{"level":"error","message":"Invalid order ID.","timestamp":"2026-06-06T07:50:07.668Z"}

@@ -25,4 +25,25 @@ import { CakeBuilder } from "../model/builders/cake.builder";
                    .setQuantity(Number(data[16]))
                    .build();
      }
+
+        reverseMap(item:Cake):string[]{
+            return [
+                item.getType(),
+                item.getFlavor(),
+                item.getFilling(),
+                item.getSize(),
+                item.getLayers(),
+                item.getFrostingType(),
+                item.getFrostingFlavor(),
+                item.getDecorationType(),
+                item.getDecorationColor(),
+                item.getCustomMessage(),
+                item.getShape(),
+                item.getAllergies(),
+                item.getSpecialIngredients(),
+                item.getPackagingType(),
+                String(item.getPrice()),
+                String(item.getQuantity())
+            ]
+        }
  }

@@ -19,4 +19,17 @@ export class XMLToyMapper implements IMapper<string[],Toy>{
                          .build();
 
     }
+
+    reverseMap(item: Toy): string[] {
+        return [
+            item.getType(),
+            String(item.getAgeGroup()),
+            item.getBrand(),
+            item.getMaterial(),
+            item.isBatteryRequired() ? "Yes" : "No",
+            item.isEducational() ? "Yes" : "No",
+            String(item.getPrice()),
+            String(item.getQuantity())
+        ];
+    }
 }

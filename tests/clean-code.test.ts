@@ -1,7 +1,11 @@
 import {FinanceCalculator, OrderManagement, Validator} from "../src/cleanCode";
-import { CakeBuilder } from "../src/model/builders/cake.builder";
-import { ToyBuilder } from "../src/model/builders/toy.builder";
-import { BookBuilder } from "../src/model/builders/book.builder";
+import {CSVCakeMapper} from "../src/mappers/cake.mapper"
+import {JSONBookMapper} from "../src/mappers/book.mapper";
+import {XMLToyMapper} from "../src/mappers/toy.mapper";
+import {CakeBuilder} from "../src/model/builders/cake.builder";
+import {ToyBuilder} from "../src/model/builders/toy.builder";
+import {BookBuilder} from "../src/model/builders/book.builder";
+import {ItemCategory} from "../src/model/IItem";
 
 describe('OrderManagement', () => {
 
@@ -194,4 +198,111 @@ describe("Models Builder(builder pattern)",()=>{
             quantity:3
         });
     });
+});
+
+
+describe("CSVCakeMapper", () => {
+  it("maps CSV data to Cake correctly", () => {
+    const data = [
+      "1",
+      "Birthday",
+      "Chocolate",
+      "Vanilla",
+      "Large",
+      "3",
+      "Buttercream",
+      "Strawberry",
+      "Flowers",
+      "Pink",
+      "Happy Birthday",
+      "Round",
+      "Nuts",
+      "Sprinkles",
+      "Box",
+      "25.5",
+      "2"
+    ];
+
+    const cake = new CSVCakeMapper().map(data);
+
+    expect(cake.getCategory()).toBe(ItemCategory.CAKE);
+    expect(cake.getType()).toBe("Birthday");
+    expect(cake.getFlavor()).toBe("Chocolate");
+    expect(cake.getFilling()).toBe("Vanilla");
+    expect(cake.getSize()).toBe("Large");
+    expect(cake.getLayers()).toBe("3");
+    expect(cake.getFrostingType()).toBe("Buttercream");
+    expect(cake.getFrostingFlavor()).toBe("Strawberry");
+    expect(cake.getDecorationType()).toBe("Flowers");
+    expect(cake.getDecorationColor()).toBe("Pink");
+    expect(cake.getCustomMessage()).toBe("Happy Birthday");
+    expect(cake.getShape()).toBe("Round");
+    expect(cake.getAllergies()).toBe("Nuts");
+    expect(cake.getSpecialIngredients()).toBe("Sprinkles");
+    expect(cake.getPackagingType()).toBe("Box");
+    expect(cake.getPrice()).toBe(25.5);
+    expect(cake.getQuantity()).toBe(2);
+  });
+});
+
+
+describe("JSONBookMapper", () => {
+  it("maps JSON data to Book correctly", () => {
+    const jsonData = [
+      "1",
+      "The Great Gatsby",
+      "F. Scott Fitzgerald",
+      "Classic",
+      "Hardcover",
+      "English",
+      "Scribner",
+      "None",
+      "Box",
+      "15",
+      "3"
+    ];
+
+    const book = new JSONBookMapper().map(jsonData);
+
+    expect(book.getCategory()).toBe(ItemCategory.BOOK);
+    expect(book.getTitle()).toBe("The Great Gatsby");
+    expect(book.getAuthor()).toBe("F. Scott Fitzgerald");
+    expect(book.getGenre()).toBe("Classic");
+    expect(book.getFormat()).toBe("Hardcover");
+    expect(book.getLanguage()).toBe("English");
+    expect(book.getPublisher()).toBe("Scribner");
+    expect(book.getSpecialEdition()).toBe("None");
+    expect(book.getPackaging()).toBe("Box");
+    expect(book.getPrice()).toBe(15);
+    expect(book.getQuantity()).toBe(3);
+  });
+});
+
+
+describe("XMLToyMapper", () => {
+  it("maps XML data to Toy correctly", () => {
+    const xmlData = [
+      "1",
+      "Action Figure",
+      "5",
+      "Hasbro",
+      "Plastic",
+      "No",
+      "No",
+      "20",
+      "2"
+    ];
+
+    const toy = new XMLToyMapper().map(xmlData);
+
+    expect(toy.getCategory()).toBe(ItemCategory.TOY);
+    expect(toy.getType()).toBe("Action Figure");
+    expect(toy.getAgeGroup()).toBe(5);
+    expect(toy.getBrand()).toBe("Hasbro");
+    expect(toy.getMaterial()).toBe("Plastic");
+    expect(toy.isBatteryRequired()).toBe(false);
+    expect(toy.isEducational()).toBe(false);
+    expect(toy.getPrice()).toBe(20);
+    expect(toy.getQuantity()).toBe(2);
+  });
 });
